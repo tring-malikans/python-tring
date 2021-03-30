@@ -12,15 +12,15 @@
 # import datetime
 from flask import Flask
 
-app =  Flask(__name__)
-@app.route('/')
+application =  Flask(__name__)
+@application.route('/')
 def hello():
-    # app.run(host='0.0.0.0', port=81)
+    # application.run(host='0.0.0.0', port=81)
     return 'Sup'
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
 # # app.run()
 # # client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
 # # # get market depth
