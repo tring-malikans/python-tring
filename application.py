@@ -12,12 +12,7 @@ import io
 import datetime
 from flask import Flask
 
-# application =  Flask(__name__)
-# @application.route('/')
-# def hello():
-#     # application.run(host='0.0.0.0', port=81)
-#     print("dfsdfs")
-#     return 'Sup'
+application =  Flask(__name__)
 
 
 
@@ -193,12 +188,18 @@ def main():
             # p=pool.map(bm.start_multiplex_socket(streams,process_messageC),pairs)
             process.append(newCoin)
 
-if __name__ == '__main__':
+@application.route('/')
+def hello():
+    # application.run(host='0.0.0.0', port=81)
     main()
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
-    # application.run(debug=false)
+    print("yes")
+    return 'Sup'
+
+if __name__ == '__main__':
+    application.run(debug=false)
 # # if __name__=="__main__":
 # #     # print(process)
 #     # return 'Sup'
