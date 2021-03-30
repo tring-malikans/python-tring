@@ -10,19 +10,20 @@ import time
 import threading
 import io
 import datetime
-from flask import Flask
+# from flask import Flask
 
-app=Flask(__name__)
-@app.route('/')
-def hello():
+# app=Flask(__name__)
+# @app.route('/')
+# def hello():
+if __name__=="__main__"
     main()
     # print(process)
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
-    return 'Sup'
+    # return 'Sup'
 
-app.run()
+# app.run()
 # client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
 # # get market depth
 # depth = client.get_order_book(symbol='BNBBTC')
