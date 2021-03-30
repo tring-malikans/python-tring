@@ -12,10 +12,10 @@
 # import datetime
 from flask import Flask
 
-app=Flask(__name__)
-@app.route('/')
+application=Flask(__name__)
+@application.route('/')
 def hello():
-    app.run(host='0.0.0.0', port=80)
+    application.run(host='0.0.0.0', port=80)
     return 'Sup'
 
 # # app.run()
