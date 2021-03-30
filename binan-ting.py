@@ -2,7 +2,7 @@ import os
 # import asyncio
 from binance.client import Client
 from binance.websockets import BinanceSocketManager
-from twisted.internet import reactor
+# from twisted.internet import reactor
 import pymongo
 import time
 # from multiprocessing import Pool
@@ -10,9 +10,9 @@ import time
 import threading
 import io
 import datetime
-client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
-# get market depth
-depth = client.get_order_book(symbol='BNBBTC')
+# client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
+# # get market depth
+# depth = client.get_order_book(symbol='BNBBTC')
 
 mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan1@tring1.vef4g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
@@ -206,7 +206,7 @@ def main():
 
 if __name__=="__main__":
     main()
-    print(process)
+    # print(process)
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
