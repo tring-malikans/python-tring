@@ -10,11 +10,12 @@ import time
 import threading
 import io
 import datetime
-# from flask import Flask
+from flask import Flask
 
-# app=Flask(__name__)
-# @app.route('/')
-# def hello():
+app=Flask(__name__)
+@app.route('/')
+def hello():
+    return 'Sup'
 
 # app.run()
 # client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
@@ -210,12 +211,12 @@ def main():
             # p=pool.map(bm.start_multiplex_socket(streams,process_messageC),pairs)
             process.append(newCoin)
 
-if __name__=="__main__":
-    main()
-    # print(process)
-    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-    [ t.start() for t in threads ]
-    [ t.join() for t in threads ]
+# if __name__=="__main__":
+#     main()
+#     # print(process)
+#     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+#     [ t.start() for t in threads ]
+#     [ t.join() for t in threads ]
     # return 'Sup'
 # if __name__=="__main__":
     
