@@ -114,7 +114,7 @@ def process_messageO(msg):
     }
     information.insert_one(record)
 def start_extract_coins(coin):   
-    # print(coin,'xx') 
+    print(coin,'xx') 
     # conn_key = bm.start_multiplex_socket(['bnbbtc@aggTrade', 'neobtc@ticker'], process_m_message)
     # time.sleep(1)
     trades = bm.start_trade_socket(coin, process_messageT)
@@ -126,6 +126,7 @@ process=[]
 # import requests\
 def main():
     # for proxie in proxies:
+    print("222")
     for coin in coins:
         for pair in pairs:
             # proxy={
@@ -156,6 +157,7 @@ def main():
 def hello():
     # application.run(host='0.0.0.0', port=81)
     main()
+    print("1")
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
