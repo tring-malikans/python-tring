@@ -10,11 +10,11 @@ import time
 import threading
 import io
 import datetime
-from flask import Flask
-
+from flask import Flask , render_template
+from flask_socketio import SocketIO
 application =  Flask(__name__)
-
-
+async_mode=None
+socket_=SocketIO(application,async_mode=async_mode)
 
 
 
@@ -30,40 +30,13 @@ pairs=["BUSD"]
 
 
 
-# proxies=[
-#     # 'http://movais:QA3arTsD@23.106.192.79:29842',
-#     # 'http://movais:QA3arTsD@45.147.63.31:29842',
-#     # 'http://movais:QA3arTsD@23.106.192.189:29842',
-#     # 'http://movais:QA3arTsD@45.147.63.94:29842',
-#     'http://movais:QA3arTsD@23.106.192.64:29842'
-# ]
+
 
 client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
 bm = BinanceSocketManager(client)
 bm.start()
 
-# # headers='Event_type'+','+'Event_time'+','+'Symbol'+','+'Trade_ID'+','+'Price'+','+'Quantity'
-# # with io.open('trades.csv','w',encoding="utf8") as f2:
-# #     f2.write(headers+'\n')
-# #     f2.close()
 
-# # headers2='updateId'+','+'Symbol'+','+'Bids'+'bid quantity'+','+'Asks'+','+'Asks quan'
-# # with io.open('orders.csv','w',encoding="utf8") as f2:
-# #     f2.write(headers2+'\n')
-# #     f2.close()
-
-# # headers3='Event_type'+','+'Event_time'+','+'Event_times'+','+'Symbol'+','+'Aggregate_trade_ID'+','+'Price'+','+'Quantity'+','+'TradeType'
-# # with io.open('coins.csv','w',encoding="utf8") as f2:
-# #     f2.write(headers3+'\n')
-# #     f2.close()
-
-# def process_message(msg):
-#     # information=db["coins"]
-#     print("message type: {}".format(msg['e']))
-#     print(msg)
-
-
-# # conn_key = bm.start_aggtrade_socket('BNBBTC', process_message)
 def process_messageC(msg):
     information=db["coins"]
     Event_type=msg['e']
@@ -145,17 +118,8 @@ def start_extract_coins(coin):
     # conn_key = bm.start_multiplex_socket(['bnbbtc@aggTrade', 'neobtc@ticker'], process_m_message)
     # time.sleep(1)
     trades = bm.start_trade_socket(coin, process_messageT)
-    # orders= bm.start_symbol_book_ticker_socket(coin, process_messageO)
     prices= bm.start_aggtrade_socket(coin, process_messageC)
-    # return 1
-    # record={
-    #     "trades":trades,
-    #     "orders":orders,
-    #     "prices":prices
-    # }
-    # print(trades,type(trades))
-    # print(record)
-    # information.insert_one(record)
+    
 
 process=[]
 # print(bm)
@@ -196,10 +160,58 @@ def hello():
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
     print("yes")
-    return 'Sup'
+    return render_template('index.html',sync_mode=socket_.async_mode)
+    # return 'Sup'
 
 if __name__ == '__main__':
     application.run(debug=false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # headers='Event_type'+','+'Event_time'+','+'Symbol'+','+'Trade_ID'+','+'Price'+','+'Quantity'
+# # with io.open('trades.csv','w',encoding="utf8") as f2:
+# #     f2.write(headers+'\n')
+# #     f2.close()
+
+# # headers2='updateId'+','+'Symbol'+','+'Bids'+'bid quantity'+','+'Asks'+','+'Asks quan'
+# # with io.open('orders.csv','w',encoding="utf8") as f2:
+# #     f2.write(headers2+'\n')
+# #     f2.close()
+
+# # headers3='Event_type'+','+'Event_time'+','+'Event_times'+','+'Symbol'+','+'Aggregate_trade_ID'+','+'Price'+','+'Quantity'+','+'TradeType'
+# # with io.open('coins.csv','w',encoding="utf8") as f2:
+# #     f2.write(headers3+'\n')
+# #     f2.close()
+
+# def process_message(msg):
+#     # information=db["coins"]
+#     print("message type: {}".format(msg['e']))
+#     print(msg)
+
+
+# # conn_key = bm.start_aggtrade_socket('BNBBTC', process_message)
+
+
+
+
+# proxies=[
+#     # 'http://movais:QA3arTsD@23.106.192.79:29842',
+#     # 'http://movais:QA3arTsD@45.147.63.31:29842',
+#     # 'http://movais:QA3arTsD@23.106.192.189:29842',
+#     # 'http://movais:QA3arTsD@45.147.63.94:29842',
+#     'http://movais:QA3arTsD@23.106.192.64:29842'
+# ]
 # # if __name__=="__main__":
 # #     # print(process)
 #     # return 'Sup'
