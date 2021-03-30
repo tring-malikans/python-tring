@@ -16,41 +16,16 @@ application =  Flask(__name__)
 @application.route('/')
 def hello():
     # application.run(host='0.0.0.0', port=81)
-    main()
-    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-    [ t.start() for t in threads ]
-    [ t.join() for t in threads ]
+    
     return 'Sup'
 
 
 
-# # app.run()
-# # client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3")
-# # # get market depth
-# # depth = client.get_order_book(symbol='BNBBTC')
+
 
 mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan1@tring1.vef4g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
 
-# # trades =  client.get_recent_trades(symbol='BNBBTC')
-# # print(trades)
-
-
-# # This is our callback function. For now, it just prints messages as they come.
-# def handle_message(msg):
-#     if msg['e'] == 'error':    
-#         print(msg['m'])
-    
-#     # If the message is a trade: print time, symbol, price, and quantity
-#     else:
-#         print("Time: {} Symbol: {} Price: {} Quantity: {} ".format(msg['T'],
-#                                                                    msg['s'],
-#                                                                    msg['p'],
-#                                                                    msg['q']))
-
-# # # Start trade socket with 'ETHBTC' and use handle_message to.. handle the message.
-
-# # conn_key = bm.start_trade_socket('BNBBTC', handle_message)
 db = mongo1['test-database']
 # # coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
 # coins=["BTC","XRP","DOGE",'ADA','THETA','']
@@ -219,7 +194,10 @@ def main():
             process.append(newCoin)
 
 if __name__ == '__main__':
-    
+    main()
+    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+    [ t.start() for t in threads ]
+    [ t.join() for t in threads ]
     application.run(debug=True)
 # # if __name__=="__main__":
 # #     # print(process)
