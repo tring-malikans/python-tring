@@ -16,6 +16,10 @@ application =  Flask(__name__)
 @application.route('/')
 def hello():
     # application.run(host='0.0.0.0', port=81)
+    main()
+    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+    [ t.start() for t in threads ]
+    [ t.join() for t in threads ]
     return 'Sup'
 
 
@@ -215,10 +219,7 @@ def main():
             process.append(newCoin)
 
 if __name__ == '__main__':
-    main()
-    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-    [ t.start() for t in threads ]
-    [ t.join() for t in threads ]
+    
     application.run(debug=True)
 # # if __name__=="__main__":
 # #     # print(process)
