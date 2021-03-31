@@ -34,6 +34,7 @@ regex==2021.3.17
 requests==2.25.1
 service-identity==18.1.0
 six==1.15.0
+zope.interface==5.3.0
 Twisted==21.2.0
 twisted-iocpsupport==1.0.1
 txaio==21.2.1
@@ -41,4 +42,3 @@ tzlocal==2.1
 ujson==4.0.2
 urllib3==1.26.4
 Werkzeug==1.0.1
-zope.interface==5.3.0
