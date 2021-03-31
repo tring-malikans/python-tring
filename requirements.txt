@@ -23,6 +23,7 @@ pandas==1.2.3
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
+PyHamcrest==2.0.2
 pymongo==3.11.3
 pyOpenSSL==20.0.1
 python-binance==0.7.9
@@ -34,7 +35,6 @@ regex==2021.3.17
 requests==2.25.1
 service-identity==18.1.0
 six==1.15.0
-zope.interface==5.3.0
 Twisted==21.2.0
 twisted-iocpsupport==1.0.1
 txaio==21.2.1
