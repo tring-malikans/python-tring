@@ -161,7 +161,8 @@ def hello():
     # return 'Sup'
 
 if __name__ == '__main__':
-    application.run(debug=false)
+    application.run(host="0.0.0.0",port=8080)
+    # application.run(debug=true)
     main()
     print("1")
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
