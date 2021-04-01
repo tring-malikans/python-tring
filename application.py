@@ -34,7 +34,7 @@ pairs=["BUSD"]
 
 client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3", {"verify": True, "timeout": 10000})
 bm = BinanceSocketManager(client)
-bm.start()
+
 
 
 def process_messageC(msg):
@@ -119,7 +119,7 @@ def start_extract_coins(coin):
     # time.sleep(1)
     trades = bm.start_trade_socket(coin, process_messageT)
     prices= bm.start_aggtrade_socket(coin, process_messageC)
-    
+    bm.start()
 
 process=[]
 # print(bm)
