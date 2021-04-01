@@ -161,14 +161,14 @@ def hello():
     # return 'Sup'
 
 if __name__ == '__main__':
-    application.run(host="0.0.0.0",port=8080)
-    # application.run(debug=true)
     main()
     print("1")
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
     print("yes")
+    application.run(host="0.0.0.0",port=8080)
+    application.run(debug=true)
 
 
 
