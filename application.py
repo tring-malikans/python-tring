@@ -25,7 +25,7 @@ db = mongo1['test-database']
 # # coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
 # coins=["BTC","XRP","DOGE",'ADA','THETA','']
 
-coins=["BTC","XRP","DOGE","ADA"]
+coins=["BTC","XRP","DOGE","ADA","THETA"]
 pairs=["BUSD"]
 
 
