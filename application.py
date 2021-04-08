@@ -13,7 +13,7 @@ import datetime
 import gc
 from flask import Flask , render_template
 from flask_socketio import SocketIO
-
+from twisted.internet import reactor
 application =  Flask(__name__)
 async_mode=None
 socket_=SocketIO(application,async_mode=async_mode)
@@ -27,7 +27,7 @@ db = mongo1['test-database']
 # # coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
 # coins=["BTC","XRP","DOGE",'ADA','THETA','']
 
-# coins=["BTC"]
+coins=["BTC"]
 pairs=["BUSD"]
 
 
@@ -120,7 +120,7 @@ def start_extract_coins(coin):
     # time.sleep(1)
     trades = bm.start_trade_socket(coin, process_messageT)
     prices= bm.start_aggtrade_socket(coin, process_messageC)
-    bm.start()
+    # bm.start()
 
 process=[]
 # print(bm)
