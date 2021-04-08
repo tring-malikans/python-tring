@@ -11,12 +11,12 @@ import threading
 import io
 import datetime
 import gc
-# from flask import Flask , render_template
-# from flask_socketio import SocketIO
+from flask import Flask , render_template
+from flask_socketio import SocketIO
 
-# application =  Flask(__name__)
-# async_mode=None
-# socket_=SocketIO(application,async_mode=async_mode)
+application =  Flask(__name__)
+async_mode=None
+socket_=SocketIO(application,async_mode=async_mode)
 
 
 
@@ -156,26 +156,26 @@ def main():
             gc.collect()
     gc.garbage
 
-# @application.route('/')
-# def hello():
-#     # application.run(host='0.0.0.0', port=81)
-#     main()
-#     print("1")
-#     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-#     [ t.start() for t in threads ]
-#     [ t.join() for t in threads ]
-#     print("yes")
-#     return render_template('index.html',sync_mode=socket_.async_mode)
-#     # return 'Sup'
-
-if __name__ == '__main__':
+@application.route('/')
+def hello():
+    # application.run(host='0.0.0.0', port=81)
     main()
     print("1")
     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     [ t.start() for t in threads ]
     [ t.join() for t in threads ]
-    # application.run(host="0.0.0.0",port=8080)
-    # application.run(debug=true)
+    print("yes")
+    return render_template('index.html',sync_mode=socket_.async_mode)
+    # return 'Sup'
+
+if __name__ == '__main__':
+    # main()
+    # print("1")
+    # threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+    # [ t.start() for t in threads ]
+    # [ t.join() for t in threads ]
+    application.run(host="0.0.0.0",port=8080)
+    application.run(debug=true)
 
 
 
