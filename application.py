@@ -12,6 +12,8 @@ import io
 import datetime
 from flask import Flask , render_template
 from flask_socketio import SocketIO
+import gc
+
 application =  Flask(__name__)
 async_mode=None
 socket_=SocketIO(application,async_mode=async_mode)
@@ -34,7 +36,6 @@ pairs=["BUSD"]
 
 client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3", {"verify": True, "timeout": 10000})
 bm = BinanceSocketManager(client)
-
 
 
 def process_messageC(msg):
@@ -152,6 +153,8 @@ def main():
             # p=pool.map(start_extract_coins(newCoin),coins,5)
             # p=pool.map(bm.start_multiplex_socket(streams,process_messageC),pairs)
             process.append(newCoin)
+            gc.collect()
+    gc.garbage()
 
 @application.route('/')
 def hello():
