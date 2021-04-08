@@ -24,10 +24,10 @@ mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan1@tring1.vef4g.mongodb.
 
 
 db = mongo1['test-database']
-coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
+# coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
 # coins=["BTC","XRP","DOGE",'ADA','THETA','']
 
-# coins=["BTC"]
+coins=["BTC","XRP","DOGE"]
 pairs=["BUSD"]
 
 
@@ -159,21 +159,22 @@ def main():
 @application.route('/')
 def hello():
     # application.run(host='0.0.0.0', port=81)
-    main()
-    print("1")
-    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-    [ t.start() for t in threads ]
-    [ t.join() for t in threads ]
-    print("yes")
-    return render_template('index.html',sync_mode=socket_.async_mode)
-    # return 'Sup'
-
-if __name__ == '__main__':
     # main()
     # print("1")
     # threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
     # [ t.start() for t in threads ]
     # [ t.join() for t in threads ]
+    # print("yes")
+    # return render_template('index.html',sync_mode=socket_.async_mode)
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+    # return 'Sup'
+
+if __name__ == '__main__':
+    main()
+    print("1")
+    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+    [ t.start() for t in threads ]
+    [ t.join() for t in threads ]
     application.run(host="0.0.0.0",port=8080)
     application.run(debug=true)
 
