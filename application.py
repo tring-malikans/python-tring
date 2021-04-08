@@ -25,10 +25,10 @@ mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan1@tring1.vef4g.mongodb.
 
 
 db = mongo1['test-database']
-# coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
+coins=["BTC","SUSHI","DOGE",'ADA','EOS','XRP','VET','TRX','LINK','THETA']
 # coins=["BTC","XRP","DOGE",'ADA','THETA','']
 
-coins=["BTC","XRP","DOGE"]
+# coins=["BTC","XRP","DOGE"]
 pairs=["BUSD"]
 
 
