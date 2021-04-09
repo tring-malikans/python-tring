@@ -25,6 +25,7 @@ mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan1@tring1.vef4g.mongodb.
 
 
 db = mongo1['test-database']
+
 coins=['1INCH'
 ,'AAVEDOWN'
 ,'AAVE'
