@@ -274,7 +274,7 @@ def hello():
 
 @application.route('/healthCheck')
 def healthCheck():
-    return json.dumps({'success':True}),404, {'ContentType':'application/json'}
+    return json.dumps({'success':True}),200, {'ContentType':'application/json'}
 
 if __name__ == '__main__':
     # main()
