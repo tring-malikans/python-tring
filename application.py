@@ -270,9 +270,9 @@ def hello():
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
     # return 'Sup'
 
-@application.route('/healthCheck')
-def healthCheck():
-    return json.dumps({'new':True}),200, {'ContentType':'application/json'}
+# @application.route('/healthCheck')
+# def healthCheck():
+#     return json.dumps({'new':True}),200, {'ContentType':'application/json'}
 
 if __name__ == '__main__':
     # main()
