@@ -127,10 +127,10 @@ db = mongo1['test-database']
 # ,'CVP'
 # ,'DAI'
 # ]
-coins=["BTC","XRP","DOGE",'ADA','THETA']
-print(coins)
-
 # coins=["BTC","XRP","DOGE",'ADA','THETA']
+# print(coins)
+
+coins=["BTC","XRP","DOGE",'ADA','THETA']
 pairs=["BUSD"]
 
 
