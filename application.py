@@ -130,12 +130,13 @@ db = mongo1['test-database']
 # coins=["BTC","XRP","DOGE",'ADA','THETA']
 # print(coins)
 
-coins=["BTC","XRP","DOGE",'ADA','THETA']
+# coins=["BTC","XRP","DOGE",'ADA','THETA']
+coins=["DOGE"]
 pairs=["BUSD"]
 
 
 
-
+# e4ca82ac-2ddc-4427-99dc-95edf1a4890e
 
 client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT0", "AUZge7ylUu48BSTONuEv8zOsWcFiHOX6hli2pHMWVQI3BHSyAii9hBiLzHzUApr3", {"verify": True, "timeout": 10000})
 bm = BinanceSocketManager(client)
@@ -222,7 +223,7 @@ def start_extract_coins(coin):
     # conn_key = bm.start_multiplex_socket(['bnbbtc@aggTrade', 'neobtc@ticker'], process_m_message)
     # time.sleep(1)
     trades = bm.start_trade_socket(coin, process_messageT)
-    prices= bm.start_aggtrade_socket(coin, process_messageC)
+    # prices= bm.start_aggtrade_socket(coin, process_messageC)
     bm.start()
 
 process=[]
