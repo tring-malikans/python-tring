@@ -174,7 +174,7 @@ def process_messageC(msg):
     information.insert_one(record)
 
 def process_messageT(msg):
-    information=db["trades"]
+    information=db[f"{msg['s']}"]
     print("message type: {}".format(msg['e']))
     Event_type=msg['e']
     s = msg['E'] / 1000
