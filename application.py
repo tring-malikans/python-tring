@@ -21,7 +21,7 @@ socket_=SocketIO(application,async_mode=async_mode)
 
 
 
-mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan1@tring1.vef4g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan@tring1.vef4g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
 
 db = mongo1['test-database']
@@ -175,6 +175,7 @@ def process_messageC(msg):
 
 def process_messageT(msg):
     information=db[f"{msg['s']}"]
+    # information=db["dogebusd"]
     print("message type: {}".format(msg['e']))
     Event_type=msg['e']
     s = msg['E'] / 1000
