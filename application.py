@@ -143,7 +143,7 @@ bm = BinanceSocketManager(client)
 
 
 def process_messageC(msg):
-    information=db["coins"]
+    information=db[f"{msg['s']}"]
     Event_type=msg['e']
     s = msg['E'] / 1000
     year=datetime.datetime.fromtimestamp(s).strftime('%Y')[-2:]
