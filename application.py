@@ -142,6 +142,7 @@ client = Client("gyHLoFuT1VKWwtWM8djg7lshfeHGkiADh6lkPsma0HBHIYAhqqZe2grzK7ZIywT
 bm = BinanceSocketManager(client)
 
 
+
 def process_messageC(msg):
     information=db[f"{msg['s']}"]
     Event_type=msg['e']
@@ -225,6 +226,7 @@ def start_extract_coins(coin):
     # time.sleep(1)
     # trades = bm.start_trade_socket(coin, process_messageT)
     prices= bm.start_aggtrade_socket(coin, process_messageC)
+    
     bm.start()
 
 process=[]
