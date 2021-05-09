@@ -224,9 +224,9 @@ def start_extract_coins(coin):
     print(coin,'xx') 
     # conn_key = bm.start_multiplex_socket(['bnbbtc@aggTrade', 'neobtc@ticker'], process_m_message)
     # time.sleep(1)
-    # trades = bm.start_trade_socket(coin, process_messageT)
-    prices= bm.start_aggtrade_socket(coin, process_messageC)
-    
+    trades = bm.start_trade_socket(coin, process_messageT)
+    # prices= bm.start_aggtrade_socket(coin, process_messageC)
+
     bm.start()
 
 process=[]
