@@ -11,20 +11,20 @@ import threading
 import io
 import datetime
 import gc
-from flask import Flask , render_template
-from flask import json
-from flask_socketio import SocketIO
-from twisted.internet import reactor
-application =  Flask(__name__)
-async_mode=None
-socket_=SocketIO(application,async_mode=async_mode)
+# from flask import Flask , render_template
+# from flask import json
+# from flask_socketio import SocketIO
+# from twisted.internet import reactor
+# application =  Flask(__name__)
+# async_mode=None
+# socket_=SocketIO(application,async_mode=async_mode)
 
 
 
 mongo1=pymongo.MongoClient('mongodb+srv://sufiyan:sufiyan@tring1.vef4g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
 
-db = mongo1['binance']
+db = mongo1['test-database']
 
 # coins=['1INCH'
 # ,'AAVEDOWN'
@@ -144,7 +144,7 @@ bm = BinanceSocketManager(client)
 
 
 def process_messageC(msg):
-    information=db[f"{msg['s']}Aggr"]
+    # information=db[f"{msg['s']}"]
     Event_type=msg['e']
     s = msg['E'] / 1000
     year=datetime.datetime.fromtimestamp(s).strftime('%Y')[-2:]
@@ -173,7 +173,7 @@ def process_messageC(msg):
         "Quantity":Quantity,
         "tradeType":tradeType
     }
-    information.insert_one(record)
+    # information.insert_one(record)
 
 def process_messageT(msg):
     information=db[f"{msg['s']}"]
@@ -190,6 +190,7 @@ def process_messageT(msg):
     # with io.open('trades.csv','a',encoding="utf8") as f2:
     #     f2.write(scrape_data+'\n')
     #     f2.close()
+    print(Price)
     record={
         "Event_type":Event_type,
         "Event_time":Event_time,
@@ -225,8 +226,9 @@ def start_extract_coins(coin):
     print(coin,'xx') 
     # conn_key = bm.start_multiplex_socket(['bnbbtc@aggTrade', 'neobtc@ticker'], process_m_message)
     # time.sleep(1)
-    # trades = bm.start_trade_socket(coin, process_messageT)
-    prices= bm.start_aggtrade_socket(coin, process_messageC)
+    trades = bm.start_trade_socket(coin, process_messageT)
+    # prices= bm.start_aggtrade_socket(coin, process_messageC)
+
     bm.start()
 
 process=[]
@@ -261,31 +263,31 @@ def main():
             # p=pool.map(bm.start_multiplex_socket(streams,process_messageC),pairs)
             process.append(newCoin)
 
-@application.route('/')
-def hello():
-    # application.run(host='0.0.0.0', port=81)
-    main()
-    print("1")
-    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-    [ t.start() for t in threads ]
-    [ t.join() for t in threads ]
-    # print("yes")
-    # return render_template('index.html',sync_mode=socket_.async_mode)
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
-    # return 'Sup'
+# @application.route('/')
+# def hello():
+#     # application.run(host='0.0.0.0', port=81)
+#     main()
+#     print("1")
+#     threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+#     [ t.start() for t in threads ]
+#     [ t.join() for t in threads ]
+#     # print("yes")
+#     # return render_template('index.html',sync_mode=socket_.async_mode)
+#     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+#     # return 'Sup'
 
 # @application.route('/healthCheck')
 # def healthCheck():
 #     return json.dumps({'new':True}),200, {'ContentType':'application/json'}
 
 if __name__ == '__main__':
-    # main()
-    # print("1")
-    # threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
-    # [ t.start() for t in threads ]
-    # [ t.join() for t in threads ]
-    application.run(host="0.0.0.0",port=8080)
-    application.run(debug=true)
+    main()
+    print("1")
+    threads = [ threading.Thread(target = start_extract_coins, args=(p,)) for p in process ]
+    [ t.start() for t in threads ]
+    [ t.join() for t in threads ]
+    # application.run(host="0.0.0.0",port=8080)
+    # application.run(debug=true)
 
 
 
